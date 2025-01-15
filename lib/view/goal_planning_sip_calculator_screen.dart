@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:investmets_calculator/providers/goal-planning-provider.dart';
 import 'package:investmets_calculator/widgets/custom-textfied.dart';
 
 import '../global_variable.dart';
+import '../providers/goal-planning-sip-provider.dart';
 
-class GoalPlanningCalculatorScreen extends ConsumerStatefulWidget {
-  const GoalPlanningCalculatorScreen({super.key});
+class GoalPlanningCalculatorSIPScreen extends ConsumerStatefulWidget {
+  const GoalPlanningCalculatorSIPScreen({super.key});
 
   @override
-  ConsumerState<GoalPlanningCalculatorScreen> createState() => _GoalPlanningCalculatorScreenState();
+  ConsumerState<GoalPlanningCalculatorSIPScreen> createState() => _GoalPlanningCalculatorSIPScreenState();
 }
 
-class _GoalPlanningCalculatorScreenState extends ConsumerState<GoalPlanningCalculatorScreen> {
-  final TextEditingController futureValueController = TextEditingController(text: "1000000");
+class _GoalPlanningCalculatorSIPScreenState extends ConsumerState<GoalPlanningCalculatorSIPScreen> {
+  final TextEditingController futureValueController = TextEditingController(text: " 10000000");
   final TextEditingController returnRateController = TextEditingController(text: "12");
   final TextEditingController timePeriodController = TextEditingController(text: "10");
 
@@ -21,14 +21,14 @@ class _GoalPlanningCalculatorScreenState extends ConsumerState<GoalPlanningCalcu
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.microtask(() => ref.read(goalPlanningProvider.notifier).calculateGoalPlanning(futureValue: futureValueController.text, returnRate: returnRateController.text, timePeriod: timePeriodController.text));
+    Future.microtask(() => ref.read(goalPlanningSIPProvider.notifier).calculateSIPGoalPlanning(futureValue: futureValueController.text, returnRate: returnRateController.text, timePeriod: timePeriodController.text));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Goal Planning Calculator"),
+        title: Text("Goal Planning Calculator (SIP)"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -67,12 +67,12 @@ class _GoalPlanningCalculatorScreenState extends ConsumerState<GoalPlanningCalcu
                   width: width(context) * 0.9,
                   child: Consumer(
                     builder: (context, ref, child) {
-                      final calculationRef = ref.watch(goalPlanningProvider);
+                      final calculationRef = ref.watch(goalPlanningSIPProvider);
                       return Column(
                         spacing: 20,
                         children: [
                           Row(
-                            children: [Text("Future Value"), Spacer(), Text("${calculationRef.futureValue} $inr")],
+                            children: [Text("Target Amount"), Spacer(), Text("${calculationRef.futureValue} $inr")],
                           ),
                           Row(
                             children: [Text("Expected Return (p.a.)"), Spacer(), Text("${calculationRef.returnRate} %")],
@@ -83,7 +83,7 @@ class _GoalPlanningCalculatorScreenState extends ConsumerState<GoalPlanningCalcu
                           Row(
                             children: [
                               Text(
-                                "Amount to be invested today",
+                                "Amount to be invested monthly",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Spacer(),
@@ -103,7 +103,7 @@ class _GoalPlanningCalculatorScreenState extends ConsumerState<GoalPlanningCalcu
                 ElevatedButton(
                     onPressed: () {
                       if (futureValueController.text.isNotEmpty && returnRateController.text.isNotEmpty && timePeriodController.text.isNotEmpty) {
-                        ref.read(goalPlanningProvider.notifier).calculateGoalPlanning(futureValue: futureValueController.text, returnRate: returnRateController.text, timePeriod: timePeriodController.text);
+                        ref.read(goalPlanningSIPProvider.notifier).calculateSIPGoalPlanning(futureValue: futureValueController.text, returnRate: returnRateController.text, timePeriod: timePeriodController.text);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Fill the Field")));
                       }

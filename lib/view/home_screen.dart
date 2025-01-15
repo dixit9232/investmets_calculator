@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:investmets_calculator/view/SWP_calculator.dart';
 import 'package:investmets_calculator/view/cagr_calculator_screen.dart';
 import 'package:investmets_calculator/view/emi_calculator.dart';
-import 'package:investmets_calculator/view/goal_planning_calculator_screen.dart';
+import 'package:investmets_calculator/view/goal_planning_lumpsum_calculator_screen.dart';
 import 'package:investmets_calculator/view/lumpsum_calculator.dart';
+import 'package:investmets_calculator/view/net_worth_screen.dart';
+import 'package:investmets_calculator/view/saving_calculator_screen.dart';
 import 'package:investmets_calculator/view/sip_calculator_screen.dart';
+
+import 'goal_planning_sip_calculator_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -60,11 +64,23 @@ class HomeScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => GoalPlanningCalculatorScreen(),
+                          builder: (context) => GoalPlanningCalculatorLumpsumScreen(),
                         ));
                   },
                   child: Text(
-                    "Goal Planning Calculator",
+                    "Goal Planning Calculator (Lumpsum)",
+                    style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
+                  )),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => GoalPlanningCalculatorSIPScreen(),
+                        ));
+                  },
+                  child: Text(
+                    "Goal Planning Calculator (SIP)",
                     style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
                   )),
               ElevatedButton(
@@ -89,6 +105,30 @@ class HomeScreen extends StatelessWidget {
                   },
                   child: Text(
                     "CAGR Calculator",
+                    style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
+                  )),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SavingCalculatorScreen(),
+                        ));
+                  },
+                  child: Text(
+                    "Saving Calculator",
+                    style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
+                  )),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NetWorthCalculatorScreen(),
+                        ));
+                  },
+                  child: Text(
+                    "Net Worth Calculator",
                     style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
                   )),
             ],
