@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:investmets_calculator/view/SWP_calculator.dart';
 import 'package:investmets_calculator/view/cagr_calculator_screen.dart';
 import 'package:investmets_calculator/view/emi_calculator.dart';
+import 'package:investmets_calculator/view/fd_calculator_screen.dart';
 import 'package:investmets_calculator/view/goal_planning_lumpsum_calculator_screen.dart';
 import 'package:investmets_calculator/view/lumpsum_calculator.dart';
 import 'package:investmets_calculator/view/net_worth_screen.dart';
+import 'package:investmets_calculator/view/rd_calculator_screen.dart';
 import 'package:investmets_calculator/view/saving_calculator_screen.dart';
 import 'package:investmets_calculator/view/sip_calculator_screen.dart';
 
@@ -129,6 +131,30 @@ class HomeScreen extends StatelessWidget {
                   },
                   child: Text(
                     "Net Worth Calculator",
+                    style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
+                  )),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FDCalculatorScreen(),
+                        ));
+                  },
+                  child: Text(
+                    "FD Calculator",
+                    style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
+                  )),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RDCalculatorScreen(),
+                        ));
+                  },
+                  child: Text(
+                    "RD Calculator",
                     style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
                   )),
             ],

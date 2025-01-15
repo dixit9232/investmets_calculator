@@ -21,8 +21,9 @@ class SavingNotifier extends StateNotifier<SavingModel> {
     String formattedNecessities = numberFormat.format(necessitiesValue.roundToDouble().toInt());
     String formattedWants = numberFormat.format(wantsValue.roundToDouble().toInt());
     String formattedSavingAndInvestment = numberFormat.format(savingInvestmentValue.roundToDouble().toInt());
+    String formattedMonthlyIncome = numberFormat.format(mi.roundToDouble().toInt());
 
-    state = SavingModel(monthlyIncome: monthlyIncome, necessitiesPer: necessitiesPer, wantsPer: wantsPer, savingAndInvestmentPer: savingAndInvestmentPer, necessitiesValue: formattedNecessities, wantsValue: formattedWants, savingAndInvestmentValue: formattedSavingAndInvestment);
+    state = SavingModel(monthlyIncome: formattedMonthlyIncome, necessitiesPer: necessitiesPer, wantsPer: wantsPer, savingAndInvestmentPer: savingAndInvestmentPer, necessitiesValue: formattedNecessities, wantsValue: formattedWants, savingAndInvestmentValue: formattedSavingAndInvestment);
   }
 }
 

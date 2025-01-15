@@ -3,14 +3,14 @@ import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-final sipProvider = StateNotifierProvider<SIPNotifier, SIPModel>((ref) {
-  return SIPNotifier();
+final rdProvider = StateNotifierProvider<RDNotifier, RDModel>((ref) {
+  return RDNotifier();
 });
 
-class SIPNotifier extends StateNotifier<SIPModel> {
-  SIPNotifier() : super(SIPModel());
+class RDNotifier extends StateNotifier<RDModel> {
+  RDNotifier() : super(RDModel());
 
-  void calculateSIP({required String monthlyInvestment, required String returnRate, required String timePeriod}) {
+  void calculateRD({required String monthlyInvestment, required String returnRate, required String timePeriod}) {
     double P = double.parse(monthlyInvestment);
     double r = double.parse(returnRate) / 100;
     int t = int.parse(timePeriod);
@@ -26,11 +26,11 @@ class SIPNotifier extends StateNotifier<SIPModel> {
     String formattedEstimatedReturn = formatter.format(estimatedReturn.roundToDouble().toInt());
     String formattedMonthlyInvestment = formatter.format(P.roundToDouble().toInt());
 
-    state = SIPModel(estimatedReturn: formattedEstimatedReturn, futureValue: formattedFutureValue, investedAmount: formattedInvestedAmount, monthlyInvestment: formattedMonthlyInvestment, returnRate: returnRate, timePeriod: timePeriod);
+    state = RDModel(estimatedReturn: formattedEstimatedReturn, futureValue: formattedFutureValue, investedAmount: formattedInvestedAmount, monthlyInvestment: formattedMonthlyInvestment, returnRate: returnRate, timePeriod: timePeriod);
   }
 }
 
-class SIPModel {
+class RDModel {
   final String monthlyInvestment;
   final String returnRate;
   final String timePeriod;
@@ -38,10 +38,10 @@ class SIPModel {
   final String investedAmount;
   final String estimatedReturn;
 
-  SIPModel({this.monthlyInvestment = "", this.estimatedReturn = "", this.futureValue = "", this.investedAmount = "", this.returnRate = "", this.timePeriod = ""});
+  RDModel({this.monthlyInvestment = "", this.estimatedReturn = "", this.futureValue = "", this.investedAmount = "", this.returnRate = "", this.timePeriod = ""});
 
-  SIPModel copyWith({String? monthlyInvestment, String? returnRate, String? timePeriod, String? futureValue, String? investedAmount, String? estimatedReturn}) {
-    return SIPModel(
+  RDModel copyWith({String? monthlyInvestment, String? returnRate, String? timePeriod, String? futureValue, String? investedAmount, String? estimatedReturn}) {
+    return RDModel(
         monthlyInvestment: monthlyInvestment ?? this.monthlyInvestment,
         estimatedReturn: estimatedReturn ?? this.estimatedReturn,
         futureValue: futureValue ?? this.futureValue,

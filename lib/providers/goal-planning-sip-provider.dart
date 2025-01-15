@@ -18,8 +18,9 @@ class SIPGoalPlanningNotifier extends StateNotifier<SIPGoalPlanningModel> {
     double presentValue = fv / (((pow(1 + r, t) - 1) / r) * (1 + r));
     final NumberFormat numberFormat = NumberFormat("#,##,###");
     String investingAmount = numberFormat.format(presentValue.roundToDouble().toInt());
+    String formattedFutureValue = numberFormat.format(fv.roundToDouble().toInt());
 
-    state = SIPGoalPlanningModel(investingAmountToday: investingAmount, futureValue: futureValue, returnRate: returnRate, timePeriod: timePeriod);
+    state = SIPGoalPlanningModel(investingAmountToday: investingAmount, futureValue: formattedFutureValue, returnRate: returnRate, timePeriod: timePeriod);
   }
 }
 

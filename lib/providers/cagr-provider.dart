@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 final cagrProvider = StateNotifierProvider<CAGRNotifier, CAGRModel>((ref) {
   return CAGRNotifier();
@@ -20,10 +21,15 @@ class CAGRNotifier extends StateNotifier<CAGRModel> {
 
     double cagr = (pow((fv / pv), (1 / t)) - 1) * 100;
 
+    NumberFormat numberFormat = NumberFormat('#,##,###');
+
+    String formattedPV = numberFormat.format(pv);
+    String formattedFV = numberFormat.format(fv);
+
     state = CAGRModel(
       cagr: cagr.toStringAsFixed(1),
-      presentValue: presentValue,
-      futureValue: futureValue,
+      presentValue: formattedPV,
+      futureValue: formattedFV,
       timePeriod: timePeriod,
     );
   }

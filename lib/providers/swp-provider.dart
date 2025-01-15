@@ -32,14 +32,16 @@ class SWPNotifier extends StateNotifier<SWPModel> {
     String formattedFutureValue = formatter.format(futureValue.roundToDouble().toInt());
     String formattedTotalWithdrawals = formatter.format(totalWithdrawals.roundToDouble().toInt());
     String formattedEstimatedReturn = formatter.format(estimatedReturns.roundToDouble().toInt());
+    String formattedWithdrawalAmount = formatter.format(withdrawal.roundToDouble().toInt());
+    String formattedTotalInvestment = formatter.format(investment.roundToDouble().toInt());
 
     state = SWPModel(
-      withdrawalPerMonth: withdrawalPerMonth,
+      withdrawalPerMonth: formattedWithdrawalAmount,
       timePeriod: timePeriod,
       returnRate: returnRate,
       futureValue: formattedFutureValue,
       estimatedReturn: formattedEstimatedReturn,
-      totalInvestment: totalInvestment,
+      totalInvestment: formattedTotalInvestment,
       totalWithdrawal: formattedTotalWithdrawals,
     );
   }

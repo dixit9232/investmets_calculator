@@ -18,8 +18,9 @@ class LumpsumGoalPlanningNotifier extends StateNotifier<LumpsumGoalPlanningModel
     double presentValue = fv / pow(1 + r, t);
     final NumberFormat numberFormat = NumberFormat("#,##,###");
     String investingAmount = numberFormat.format(presentValue.roundToDouble().toInt());
+    String formattedFutureValue = numberFormat.format(fv.roundToDouble().toInt());
 
-    state = LumpsumGoalPlanningModel(investingAmountToday: investingAmount, futureValue: futureValue, returnRate: returnRate, timePeriod: timePeriod);
+    state = LumpsumGoalPlanningModel(investingAmountToday: investingAmount, futureValue: formattedFutureValue, returnRate: returnRate, timePeriod: timePeriod);
   }
 }
 

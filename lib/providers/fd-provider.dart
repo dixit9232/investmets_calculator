@@ -3,14 +3,14 @@ import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-final lumpsumProvider = StateNotifierProvider<LumpsumNotifier, LumpsumModel>((ref) {
-  return LumpsumNotifier();
+final fdProvider = StateNotifierProvider<FDNotifier, FDModel>((ref) {
+  return FDNotifier();
 });
 
-class LumpsumNotifier extends StateNotifier<LumpsumModel> {
-  LumpsumNotifier() : super(LumpsumModel());
+class FDNotifier extends StateNotifier<FDModel> {
+  FDNotifier() : super(FDModel());
 
-  void calculateLumpsum({required String totalInvestment, required String returnRate, required String timePeriod}) {
+  void calculateFD({required String totalInvestment, required String returnRate, required String timePeriod}) {
     double P = double.parse(totalInvestment);
     double r = double.parse(returnRate) / 100;
     int t = int.parse(timePeriod);
@@ -21,15 +21,15 @@ class LumpsumNotifier extends StateNotifier<LumpsumModel> {
 
     final formatter = NumberFormat('#,##,###');
     String formattedFutureValue = formatter.format(futureValue.roundToDouble().toInt());
+    String formattedP = formatter.format(P.roundToDouble().toInt());
     String formattedInvestedAmount = formatter.format(investedAmount.roundToDouble().toInt());
     String formattedEstimatedReturn = formatter.format(estimatedReturn.roundToDouble().toInt());
-    String formattedTotalInvestment = formatter.format(P.roundToDouble().toInt());
 
-    state = LumpsumModel(estimatedReturn: formattedEstimatedReturn, futureValue: formattedFutureValue, investedAmount: formattedInvestedAmount, totalInvestment: formattedTotalInvestment, returnRate: returnRate, timePeriod: timePeriod);
+    state = FDModel(estimatedReturn: formattedEstimatedReturn, futureValue: formattedFutureValue, investedAmount: formattedInvestedAmount, totalInvestment: formattedP, returnRate: returnRate, timePeriod: timePeriod);
   }
 }
 
-class LumpsumModel {
+class FDModel {
   final String totalInvestment;
   final String returnRate;
   final String timePeriod;
@@ -37,10 +37,10 @@ class LumpsumModel {
   final String investedAmount;
   final String estimatedReturn;
 
-  LumpsumModel({this.totalInvestment = "", this.estimatedReturn = "", this.futureValue = "", this.investedAmount = "", this.returnRate = "", this.timePeriod = ""});
+  FDModel({this.totalInvestment = "", this.estimatedReturn = "", this.futureValue = "", this.investedAmount = "", this.returnRate = "", this.timePeriod = ""});
 
-  LumpsumModel copyWith({String? totalInvestment, String? returnRate, String? timePeriod, String? futureValue, String? investedAmount, String? estimatedReturn}) {
-    return LumpsumModel(
+  FDModel copyWith({String? totalInvestment, String? returnRate, String? timePeriod, String? futureValue, String? investedAmount, String? estimatedReturn}) {
+    return FDModel(
         totalInvestment: totalInvestment ?? this.totalInvestment,
         estimatedReturn: estimatedReturn ?? this.estimatedReturn,
         futureValue: futureValue ?? this.futureValue,

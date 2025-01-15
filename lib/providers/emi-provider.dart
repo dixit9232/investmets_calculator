@@ -26,11 +26,12 @@ class EMINotifier extends StateNotifier<EMIModel> {
 
     final NumberFormat numberFormat = NumberFormat("#,##,###");
     String emiAmount = numberFormat.format(emi.roundToDouble().toInt());
+    String formattedLoanAmount = numberFormat.format(p.roundToDouble().toInt());
 
     state = EMIModel(
       emiAmount: emiAmount,
       rateOfInterest: rateOfInterest,
-      loanAmount: loanAmount,
+      loanAmount: formattedLoanAmount,
       timePeriod: timePeriod,
     );
   }
