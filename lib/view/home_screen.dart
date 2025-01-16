@@ -9,6 +9,7 @@ import 'package:investmets_calculator/view/net_worth_screen.dart';
 import 'package:investmets_calculator/view/rd_calculator_screen.dart';
 import 'package:investmets_calculator/view/saving_calculator_screen.dart';
 import 'package:investmets_calculator/view/sip_calculator_screen.dart';
+import 'package:investmets_calculator/view/step_up_sip_screen.dart';
 
 import 'goal_planning_sip_calculator_screen.dart';
 
@@ -155,6 +156,18 @@ class HomeScreen extends StatelessWidget {
                   },
                   child: Text(
                     "RD Calculator",
+                    style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
+                  )),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => StepUpSIPCalculatorScreen(),
+                        ));
+                  },
+                  child: Text(
+                    "Step up SIP Calculator",
                     style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
                   )),
             ],

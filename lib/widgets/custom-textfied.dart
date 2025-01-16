@@ -20,7 +20,7 @@ class CustomTextField extends StatelessWidget {
         keyboardType: keyboardType ?? TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [
           FilteringTextInputFormatter.allow(
-            RegExp(r'^\d*\.?\d*'),
+            RegExp(r'^-?\d*\.?\d*'),
           )
         ],
         decoration: InputDecoration(
