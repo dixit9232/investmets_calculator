@@ -4,6 +4,7 @@ import 'package:investmets_calculator/widgets/custom-textfied.dart';
 
 import '../global_variable.dart';
 import '../providers/net-worth-provider.dart';
+import '../widgets/custom_elevated_button.dart';
 
 class NetWorthCalculatorScreen extends ConsumerStatefulWidget {
   const NetWorthCalculatorScreen({super.key});
@@ -88,18 +89,15 @@ class _NetWorthCalculatorScreenState extends ConsumerState<NetWorthCalculatorScr
                 ),
                 SizedBox(),
                 SizedBox(),
-                ElevatedButton(
-                    onPressed: () {
+                CustomElevatedButton(
+                    onClick: () {
                       if (totalAssetsController.text.isNotEmpty && totalLiabilitiesController.text.isNotEmpty) {
                         ref.read(netWorthProvider.notifier).calculateNetWorth(totalAssets: totalAssetsController.text, totalLiabilities: totalLiabilitiesController.text);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Fill the Field")));
                       }
                     },
-                    child: Text(
-                      "Calculate",
-                      style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
-                    ))
+                    text: "Calculate")
               ],
             ),
           ),

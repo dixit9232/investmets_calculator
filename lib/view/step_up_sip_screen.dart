@@ -4,6 +4,7 @@ import 'package:investmets_calculator/widgets/custom-textfied.dart';
 
 import '../global_variable.dart';
 import '../providers/step-up-sip-provider.dart';
+import '../widgets/custom_elevated_button.dart';
 
 class StepUpSIPCalculatorScreen extends ConsumerStatefulWidget {
   const StepUpSIPCalculatorScreen({super.key});
@@ -119,18 +120,15 @@ class _StepUpSIPCalculatorScreenState extends ConsumerState<StepUpSIPCalculatorS
                 ),
                 SizedBox(),
                 SizedBox(),
-                ElevatedButton(
-                    onPressed: () {
+                CustomElevatedButton(
+                    onClick: () {
                       if (monthlyInvestmentController.text.isNotEmpty && returnRateController.text.isNotEmpty && timePeriodController.text.isNotEmpty && growthController.text.isNotEmpty) {
                         ref.read(stepUpSIPProvider.notifier).calculateStepUpSIP(growthRate: growthController.text, monthlyInvestment: monthlyInvestmentController.text, returnRate: returnRateController.text, timePeriod: timePeriodController.text);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Fill the Field")));
                       }
                     },
-                    child: Text(
-                      "Calculate",
-                      style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
-                    ))
+                    text: "Calculate")
               ],
             ),
           ),

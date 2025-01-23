@@ -4,6 +4,7 @@ import 'package:investmets_calculator/widgets/custom-textfied.dart';
 
 import '../global_variable.dart';
 import '../providers/retirement-provider.dart';
+import '../widgets/custom_elevated_button.dart';
 
 class RetirementCalculatorScreen extends ConsumerStatefulWidget {
   const RetirementCalculatorScreen({super.key});
@@ -175,18 +176,15 @@ class _RetirementCalculatorScreenState extends ConsumerState<RetirementCalculato
                 ),
                 SizedBox(),
                 SizedBox(),
-                ElevatedButton(
-                    onPressed: () {
+                CustomElevatedButton(
+                    onClick: () {
                       if (annualExpenseController.text.isNotEmpty && returnRate.text.isNotEmpty && currentAge.text.isNotEmpty && lifeExpectancy.text.isNotEmpty && retirementAge.text.isNotEmpty && inflationRate.text.isNotEmpty) {
                         ref.read(retirementProvider.notifier).calculateRetirement(annualExpense: annualExpenseController.text, returnRate: returnRate.text, inflationRate: inflationRate.text, currentAge: currentAge.text, retirementAge: retirementAge.text, lifeExpectancy: lifeExpectancy.text);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Fill the Field")));
                       }
                     },
-                    child: Text(
-                      "Calculate",
-                      style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
-                    ))
+                    text: "Calculate")
               ],
             ),
           ),

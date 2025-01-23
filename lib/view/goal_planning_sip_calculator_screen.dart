@@ -4,6 +4,7 @@ import 'package:investmets_calculator/widgets/custom-textfied.dart';
 
 import '../global_variable.dart';
 import '../providers/goal-planning-sip-provider.dart';
+import '../widgets/custom_elevated_button.dart';
 
 class GoalPlanningCalculatorSIPScreen extends ConsumerStatefulWidget {
   const GoalPlanningCalculatorSIPScreen({super.key});
@@ -100,18 +101,15 @@ class _GoalPlanningCalculatorSIPScreenState extends ConsumerState<GoalPlanningCa
                 ),
                 SizedBox(),
                 SizedBox(),
-                ElevatedButton(
-                    onPressed: () {
+                CustomElevatedButton(
+                    onClick: () {
                       if (futureValueController.text.isNotEmpty && returnRateController.text.isNotEmpty && timePeriodController.text.isNotEmpty) {
                         ref.read(goalPlanningSIPProvider.notifier).calculateSIPGoalPlanning(futureValue: futureValueController.text, returnRate: returnRateController.text, timePeriod: timePeriodController.text);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Fill the Field")));
                       }
                     },
-                    child: Text(
-                      "Calculate",
-                      style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
-                    ))
+                    text: "Calculate")
               ],
             ),
           ),

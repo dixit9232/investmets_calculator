@@ -4,6 +4,7 @@ import 'package:investmets_calculator/widgets/custom-textfied.dart';
 
 import '../global_variable.dart';
 import '../providers/cagr-provider.dart';
+import '../widgets/custom_elevated_button.dart';
 
 class CAGRCalculatorScreen extends ConsumerStatefulWidget {
   const CAGRCalculatorScreen({super.key});
@@ -100,18 +101,16 @@ class _CAGRCalculatorScreenState extends ConsumerState<CAGRCalculatorScreen> {
                 ),
                 SizedBox(),
                 SizedBox(),
-                ElevatedButton(
-                    onPressed: () {
-                      if (pvController.text.isNotEmpty && fvController.text.isNotEmpty && timePeriodController.text.isNotEmpty) {
-                        ref.read(cagrProvider.notifier).calculateCAGR(presentValue: pvController.text, futureValue: fvController.text, timePeriod: timePeriodController.text);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Fill the Field")));
-                      }
-                    },
-                    child: Text(
-                      "Calculate",
-                      style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
-                    ))
+                CustomElevatedButton(
+                  onClick: () {
+                    if (pvController.text.isNotEmpty && fvController.text.isNotEmpty && timePeriodController.text.isNotEmpty) {
+                      ref.read(cagrProvider.notifier).calculateCAGR(presentValue: pvController.text, futureValue: fvController.text, timePeriod: timePeriodController.text);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Fill the Field")));
+                    }
+                  },
+                  text: "Calculate",
+                )
               ],
             ),
           ),

@@ -4,6 +4,7 @@ import 'package:investmets_calculator/providers/sip-provider.dart';
 import 'package:investmets_calculator/widgets/custom-textfied.dart';
 
 import '../global_variable.dart';
+import '../widgets/custom_elevated_button.dart';
 
 class SipCalculatorScreen extends ConsumerStatefulWidget {
   const SipCalculatorScreen({super.key});
@@ -106,18 +107,15 @@ class _SipCalculatorScreenState extends ConsumerState<SipCalculatorScreen> {
                 ),
                 SizedBox(),
                 SizedBox(),
-                ElevatedButton(
-                    onPressed: () {
+                CustomElevatedButton(
+                    onClick: () {
                       if (monthlyInvestmentController.text.isNotEmpty && returnRateController.text.isNotEmpty && timePeriodController.text.isNotEmpty) {
                         ref.read(sipProvider.notifier).calculateSIP(monthlyInvestment: monthlyInvestmentController.text, returnRate: returnRateController.text, timePeriod: timePeriodController.text);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Fill the Field")));
                       }
                     },
-                    child: Text(
-                      "Calculate",
-                      style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
-                    ))
+                    text: "Calculate")
               ],
             ),
           ),

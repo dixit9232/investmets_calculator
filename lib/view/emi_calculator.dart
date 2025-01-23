@@ -4,6 +4,7 @@ import 'package:investmets_calculator/widgets/custom-textfied.dart';
 
 import '../global_variable.dart';
 import '../providers/emi-provider.dart';
+import '../widgets/custom_elevated_button.dart';
 
 class EMICalculatorScreen extends ConsumerStatefulWidget {
   const EMICalculatorScreen({super.key});
@@ -100,18 +101,16 @@ class _EMICalculatorScreenState extends ConsumerState<EMICalculatorScreen> {
                 ),
                 SizedBox(),
                 SizedBox(),
-                ElevatedButton(
-                    onPressed: () {
-                      if (totalLoanAmountController.text.isNotEmpty && interestRateController.text.isNotEmpty && timePeriodController.text.isNotEmpty) {
-                        ref.read(emiProvider.notifier).calculateEMI(loanAmount: totalLoanAmountController.text, rateOfInterest: interestRateController.text, timePeriod: timePeriodController.text);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Fill the Field")));
-                      }
-                    },
-                    child: Text(
-                      "Calculate",
-                      style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
-                    ))
+                CustomElevatedButton(
+                  onClick: () {
+                    if (totalLoanAmountController.text.isNotEmpty && interestRateController.text.isNotEmpty && timePeriodController.text.isNotEmpty) {
+                      ref.read(emiProvider.notifier).calculateEMI(loanAmount: totalLoanAmountController.text, rateOfInterest: interestRateController.text, timePeriod: timePeriodController.text);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Fill the Field")));
+                    }
+                  },
+                  text: "Calculate",
+                )
               ],
             ),
           ),

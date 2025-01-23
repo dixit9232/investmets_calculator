@@ -4,6 +4,7 @@ import 'package:investmets_calculator/providers/saving-calculator-provider.dart'
 import 'package:investmets_calculator/widgets/custom-textfied.dart';
 
 import '../global_variable.dart';
+import '../widgets/custom_elevated_button.dart';
 
 class SavingCalculatorScreen extends ConsumerStatefulWidget {
   const SavingCalculatorScreen({super.key});
@@ -138,18 +139,15 @@ class _SavingCalculatorScreenState extends ConsumerState<SavingCalculatorScreen>
                 ),
                 SizedBox(),
                 SizedBox(),
-                ElevatedButton(
-                    onPressed: () {
+                CustomElevatedButton(
+                    onClick: () {
                       if (monthlyIncomeController.text.isNotEmpty && savingAndInvestmentController.text.isNotEmpty && wantsController.text.isNotEmpty && necessitiesController.text.isNotEmpty) {
                         ref.read(savingProvider.notifier).calculateSaving(monthlyIncome: monthlyIncomeController.text, necessitiesPer: necessitiesController.text, savingAndInvestmentPer: savingAndInvestmentController.text, wantsPer: wantsController.text);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Fill the Field")));
                       }
                     },
-                    child: Text(
-                      "Calculate",
-                      style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
-                    ))
+                    text: "Calculate")
               ],
             ),
           ),

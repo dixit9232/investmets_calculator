@@ -4,6 +4,7 @@ import 'package:investmets_calculator/providers/goal-planning-lumpsum-provider.d
 import 'package:investmets_calculator/widgets/custom-textfied.dart';
 
 import '../global_variable.dart';
+import '../widgets/custom_elevated_button.dart';
 
 class GoalPlanningCalculatorLumpsumScreen extends ConsumerStatefulWidget {
   const GoalPlanningCalculatorLumpsumScreen({super.key});
@@ -100,18 +101,15 @@ class _GoalPlanningCalculatorLumpsumScreenState extends ConsumerState<GoalPlanni
                 ),
                 SizedBox(),
                 SizedBox(),
-                ElevatedButton(
-                    onPressed: () {
+                CustomElevatedButton(
+                    onClick: () {
                       if (futureValueController.text.isNotEmpty && returnRateController.text.isNotEmpty && timePeriodController.text.isNotEmpty) {
                         ref.read(goalPlanningLumpsumProvider.notifier).calculateLumpsumGoalPlanning(futureValue: futureValueController.text, returnRate: returnRateController.text, timePeriod: timePeriodController.text);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Fill the Field")));
                       }
                     },
-                    child: Text(
-                      "Calculate",
-                      style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
-                    ))
+                    text: "Calculate")
               ],
             ),
           ),

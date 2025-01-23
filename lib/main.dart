@@ -14,10 +14,20 @@ class MyApp extends StatelessWidget {
     return ProviderScope(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        title: "True Invest",
         theme: ThemeData(
             scaffoldBackgroundColor: Colors.white,
             useMaterial3: true,
-            primaryColor: Colors.purple,
+            primaryColor: Color(0xffe6eef8),
+            appBarTheme: AppBarTheme(
+              color: Color(0xffe6eef8),
+              iconTheme: IconThemeData(
+                applyTextScaling: true,
+                color: Color(0xff224f82),
+              ),
+              titleSpacing: 5,
+              titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(color: Color(0xff224f82), fontWeight: FontWeight.bold),
+            ),
             elevatedButtonTheme: ElevatedButtonThemeData(style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.purpleAccent), padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 20, horizontal: 50)))),
             textTheme: TextTheme(bodyLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.normal), bodyMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.normal), labelLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.bold))),
         home: HomeScreen(),

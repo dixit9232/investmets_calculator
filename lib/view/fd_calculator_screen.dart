@@ -4,6 +4,7 @@ import 'package:investmets_calculator/widgets/custom-textfied.dart';
 
 import '../global_variable.dart';
 import '../providers/fd-provider.dart';
+import '../widgets/custom_elevated_button.dart';
 
 class FDCalculatorScreen extends ConsumerStatefulWidget {
   const FDCalculatorScreen({super.key});
@@ -106,18 +107,15 @@ class _FDCalculatorScreenState extends ConsumerState<FDCalculatorScreen> {
                 ),
                 SizedBox(),
                 SizedBox(),
-                ElevatedButton(
-                    onPressed: () {
+                CustomElevatedButton(
+                    onClick: () {
                       if (totalInvestmentController.text.isNotEmpty && returnRateController.text.isNotEmpty && timePeriodController.text.isNotEmpty) {
                         ref.read(fdProvider.notifier).calculateFD(totalInvestment: totalInvestmentController.text, returnRate: returnRateController.text, timePeriod: timePeriodController.text);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Fill the Field")));
                       }
                     },
-                    child: Text(
-                      "Calculate",
-                      style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
-                    ))
+                    text: "Calculate")
               ],
             ),
           ),

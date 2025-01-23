@@ -4,6 +4,7 @@ import 'package:investmets_calculator/providers/swp-provider.dart';
 import 'package:investmets_calculator/widgets/custom-textfied.dart';
 
 import '../global_variable.dart';
+import '../widgets/custom_elevated_button.dart';
 
 class SWPCalculatorScreen extends ConsumerStatefulWidget {
   const SWPCalculatorScreen({super.key});
@@ -120,18 +121,15 @@ class _SWPCalculatorScreenState extends ConsumerState<SWPCalculatorScreen> {
                 ),
                 SizedBox(),
                 SizedBox(),
-                ElevatedButton(
-                    onPressed: () {
+                CustomElevatedButton(
+                    onClick: () {
                       if (totalInvestmentController.text.isNotEmpty && returnRateController.text.isNotEmpty && timePeriodController.text.isNotEmpty && withdrawalPerMonthController.text.isNotEmpty) {
                         ref.read(swpProvider.notifier).calculateSWP(totalInvestment: totalInvestmentController.text, withdrawalPerMonth: withdrawalPerMonthController.text, returnRate: returnRateController.text, timePeriod: timePeriodController.text);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Fill the Field")));
                       }
                     },
-                    child: Text(
-                      "Calculate",
-                      style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
-                    ))
+                    text: "Calculate")
               ],
             ),
           ),
